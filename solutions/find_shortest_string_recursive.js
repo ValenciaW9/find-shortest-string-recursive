@@ -29,20 +29,36 @@ if (require.main === module) {
   console.log(findShortestStringRecursive(['ardvark']));
 }
 
-module.exports = findShortestStringRecursive;
+function findShortestStringRecursive(arr) {
+  let shortest = '';
+  if (arr.length > 0) {
+    for (let i = 0; i < arr.length; i++) {
+      if (typeof arr[i] === 'string') {
+        shortest = findShortestStringRecursive(arr.slice(1));
+        if (arr[i].length <= shortest.length) {
+          shortest = arr[i];
+        }
+      }
+    }
+  }
+  return shortest;
+}
+
+console.log("Expecting: 'lily'");
+console.log(findShortestStringRecursive(['flower', 'juniper', 'lily', 'dandelion']));
 
 // Please add your pseudocode to this file
-/*************************************************************************************************
-* if array length == 1:
-*  return first element
-*
-* recursively traverse the array and store the resulting element in a variable called result
-*
-* if the first element's length is <= the result's length:
-*   return the first element
-* else:
-*   return the result
-***************************************************************************************************/
+/**
+ * The `findShortestStringRecursive` function recursively finds the shortest string in an array.
+ * @param arr - ['flower', 'juniper', 'lily', 'dandelion']
+ * @returns The function `findShortestStringRecursive` is being called with the array `['flower',
+ * 'juniper', 'lily', 'dandelion']`. The expected output is `'lily'`, which is the shortest string in
+ * the array.
+ */
+
+//*************************************************************************************************
+
+/***************************************************************************************************/
 
 // And a written explanation of your solution
 /*************************************************************************************************
